@@ -1066,24 +1066,18 @@ namespace MLPR
                 {
                     Image imgl;
 
+                    WebRequest req = WebRequest.Create("http://" + Ipimage.Trim() + ":8080/?" + namepicl + ".jpg");
+                    //req.Credentials = new NetworkCredential("service", "WSS4Bosch!");
 
+                    WebResponse resp = req.GetResponse();
+                    imgl = Image.FromStream(resp.GetResponseStream());
 
-                        WebRequest req = WebRequest.Create("http://" + Ipimage.Trim() + ":8080/?" + namepicl + ".jpg");
-                        //req.Credentials = new NetworkCredential("service", "WSS4Bosch!");
-
-                        WebResponse resp = req.GetResponse();
-                        imgl = Image.FromStream(resp.GetResponseStream());
-
-                        imgl.Save(curfile + namepicl.Remove(21, 2) + "31" + ".jpg");
-
-
-                    
-
+                    imgl.Save(curfile + namepicl.Remove(21, 2) + "31" + ".jpg");
 
                     lock (picl)
-                        {
-                            picl.Size = new Size(609, 396);
-                            Resize(imgl, picl.Width, picl.Height, picl);
+                    {
+                        picl.Size = new Size(609, 396);
+                        Resize(imgl, picl.Width, picl.Height, picl);
                         Writestatelogfile("[Show image picl] : Success");
                     }
                     
@@ -1105,18 +1099,14 @@ namespace MLPR
                 {
                     Image imgs;
 
-               
-                    
-                        WebRequest req1 = WebRequest.Create("http://" + Ipimage.Trim() + ":8080/?" + namepics + ".jpg");
-                        //req.Credentials = new NetworkCredential("service", "WSS4Bosch!");
+                    WebRequest req1 = WebRequest.Create("http://" + Ipimage.Trim() + ":8080/?" + namepics + ".jpg");
+                    //req.Credentials = new NetworkCredential("service", "WSS4Bosch!");
 
-                        WebResponse resp1 = req1.GetResponse();
-                        imgs = Image.FromStream(resp1.GetResponseStream());
+                    WebResponse resp1 = req1.GetResponse();
+                    imgs = Image.FromStream(resp1.GetResponseStream());
 
-                        imgs.Save(curfile + namepics.Remove(21, 2) + "41" + ".jpg");
-
-                    
-
+                    imgs.Save(curfile + namepics.Remove(21, 2) + "41" + ".jpg");
+ 
                     lock (pics)
                     {
                         Resize(imgs, pics.Width, pics.Height, pics);
@@ -1130,10 +1120,7 @@ namespace MLPR
                 Writeerrorlogfile("[ downloadpic : ] " + ex.Message);
             }
             
-            GC.Collect();
-            
-          
-
+            GC.Collect();     
 
         }
 
@@ -1337,8 +1324,6 @@ namespace MLPR
                     {
                         int row = dataGridView1.CurrentRow.Index;
 
-
-
                         txtlane_direction.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
                         lbdateselect.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
                         lbtimeselect.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
@@ -1357,16 +1342,9 @@ namespace MLPR
                             txtbrand.Text = "UNKNOWN";
 
 
-
-
-
                             if (data.lpr[0].no != null && data.lpr[0].nochar != null)
                             {
 
-
-                                
-
-                                
                                 lblicense.Text = data.lpr[0].nochar.ToString() + "-" + checkstringlicense(data.lpr[0].no.ToString());
                                 txt3digit.Text = data.lpr[0].nochar.ToString();
                                 txt4digit.Text = checkstringlicense(data.lpr[0].no.ToString());
@@ -1376,19 +1354,19 @@ namespace MLPR
                                 lbprovince.Text =  convertprovinceentoth(data.lpr[0].province.ToString());
                                 txtprovince.Text = convertprovinceentoth(data.lpr[0].province.ToString());
                             }
-                            if(data.lpr[0].color != null)
+                            if (data.lpr[0].color != null)
                             {
                                 lbcolor.Text = convertcolorentoth(data.lpr[0].color.ToString());
                                 txtcolor.Text = convertcolorentoth(data.lpr[0].color.ToString());
                             }
-                            if(data.lpr[0].brand != null)
+                            if (data.lpr[0].brand != null)
                             {
                                 lbbrand.Text = data.lpr[0].brand.ToString();
                                 txtbrand.Text = data.lpr[0].brand.ToString();
                             }
 
-
                             lbacc.Text = "";
+
                             if(data.lpr[0].conf <= 1 && data.lpr[0].conf != 0)
                             {
                                 lbacc.Text = (data.lpr[0].conf*100).ToString("f2") + "  %";
@@ -1400,10 +1378,9 @@ namespace MLPR
                             
                             numpicall.Text = data.lpr.Count.ToString();
                            
-                            btnimage_Click(sender, e);
+                            btnimage_Click(sender, null);
 
                             //downloadpic(data.lpr[0].image.ToString(),data.lpr[0].imagelp.ToString());
-
 
                         }
 
@@ -1415,7 +1392,6 @@ namespace MLPR
                         }
                       //  lbacc.Text = dataGridView1.Rows[row].Cells[6].Value.ToString();
 
-
                         if (CompareImages((Bitmap)((Image)(dataGridView1.Rows[row].Cells[0].Value)), Properties.Resources.edit))
                         {
                             paneleditlicense.Visible = true;
@@ -1425,8 +1401,6 @@ namespace MLPR
                             paneleditlicense.Visible = false;
                         }
                     }
-
-
                 }
                 catch (Exception ex)
                 {
@@ -1483,12 +1457,9 @@ namespace MLPR
             try
             {
                 Datamlpr data = new Datamlpr();
-
                 int row = dataGridView1.CurrentRow.Index;
-
                 data.date = dataGridView1.Rows[row].Cells[9].Value.ToString();
                 data.client_num = Convert.ToInt32(Client_num);
-                
 
                 DataGridViewButtonCell dgbtn = null;
                 DataGridViewButtonCell dgbtn1 = null;
@@ -1517,9 +1488,7 @@ namespace MLPR
                 dgbtn1.Style.ForeColor = Color.Black;
                 dgbtn1.Style.SelectionForeColor = Color.Black;
 
-
                 sendmb(4, data, null);
-
                 paneleditlicense.Visible = false;
 
             }
@@ -1627,7 +1596,7 @@ namespace MLPR
                 {
                     long dt = (long)(DateTime.Now.ToLocalTime() - Convert.ToDateTime(timeserversync)).TotalSeconds;
 
-                    if (dt > 15)
+                    if (dt > 10)
                     {
                         if (Simulate != "1")
                         {
@@ -1711,15 +1680,10 @@ namespace MLPR
 
 
 
-
-
-
                     sendmb(1, null, data);
                     //Thread.Sleep(500);
 
-               
-
-               
+         
 
                     Datamlpr datareject = new Datamlpr();
                     datareject.date = dataGridView1.Rows[row].Cells[9].Value.ToString();
@@ -1831,8 +1795,6 @@ namespace MLPR
 
             btnimageclick.Start();
 
-
-        
         }
         private void btnimagec()
         {
@@ -1881,8 +1843,6 @@ namespace MLPR
                             trxadjust.Root data = new trxadjust.Root();
 
                             data = JsonConvert.DeserializeObject<trxadjust.Root>(dataGridView1.Rows[row].Cells[10].Value.ToString());
-
-
 
                             string lprl = "";
                             string lprs = "";
@@ -2413,6 +2373,7 @@ namespace MLPR
                     int num = 0;
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
+                      
                         if (row.Index < 20)
                         {
                             if (dataGridView1[5, row.Index].Value != null)
@@ -2420,21 +2381,12 @@ namespace MLPR
                                 DateTime DateTime1970 = new DateTime(1970, 1, 1).ToLocalTime();
 
                                 long dt = (long)(DateTime.Now.ToLocalTime() - Convert.ToDateTime(dataGridView1[3, row.Index].Value.ToString() + " " + dataGridView1[4, row.Index].Value.ToString())).TotalSeconds;
+                                
+                             
 
                                 if (dataGridView1[5, row.Index].Value.ToString() != "-" && string.IsNullOrEmpty(dataGridView1[5, row.Index].Value.ToString()) == false)
                                 {
-                                    if (Convert.ToInt64(Timeout_Time) - dt > 0)
-                                    {
-                                        dataGridView1[5, row.Index].Value = Convert.ToInt64(Timeout_Time) - dt;
-                                    }
-                                    else
-                                    {
-                                        Datamlpr data = new Datamlpr();
-                                        data.date = dataGridView1.Rows[row.Index].Cells[9].Value.ToString();
-                                        data.client_num = Convert.ToInt32(Client_num);
-                                        sendmb(2, data, null);
-                                        dataGridView1.Rows.RemoveAt(row.Index);
-                                    }
+                                    
                                     if (Convert.ToInt32(dataGridView1[5, row.Index].Value.ToString()) <= Convert.ToInt32(Alert_time))
                                     {
                                         if (!CompareImages((Bitmap)((Image)(dataGridView1.Rows[row.Index].Cells[0].Value)), Properties.Resources.edit))
@@ -2446,6 +2398,23 @@ namespace MLPR
                                         dataGridView1[5, row.Index].Style.SelectionForeColor = Color.Red;
                                         dataGridView1[5, row.Index].Style.ForeColor = Color.Red;
                                     }
+
+                                    if (Convert.ToInt64(Timeout_Time) - dt > 0)
+                                    {
+                                        dataGridView1[5, row.Index].Value = Convert.ToInt64(Timeout_Time) - dt;
+                                        
+                                    }
+                                    else
+                                    {
+                                        Datamlpr data = new Datamlpr();
+                                        data.date = dataGridView1.Rows[row.Index].Cells[9].Value.ToString();
+                                        data.client_num = Convert.ToInt32(Client_num);
+                                        sendmb(2, data, null);
+                                        dataGridView1.Rows.RemoveAt(row.Index);
+                                      
+                                    }
+                               
+
                                 }
                                 else
                                 {
@@ -2454,11 +2423,13 @@ namespace MLPR
                                     data.client_num = Convert.ToInt32(Client_num);
                                     sendmb(2, data, null);
                                     dataGridView1.Rows.RemoveAt(row.Index);
+                                    
                                 }
                                         
 
 
                             }
+                           
                         }
 
                     }
@@ -2466,6 +2437,7 @@ namespace MLPR
             }
             catch (Exception ex)
             {
+               
                 Writeerrorlogfile("[timer1_Tick]" + ex.Message);
             }
         }
@@ -2488,20 +2460,11 @@ namespace MLPR
 
                                 long dt = (long)(DateTime.Now.ToLocalTime() - Convert.ToDateTime(dataGridView1[3, row.Index].Value.ToString() + " " + dataGridView1[4, row.Index].Value.ToString())).TotalSeconds;
 
+
+
                                 if (dataGridView1[5, row.Index].Value.ToString() != "-" && string.IsNullOrEmpty(dataGridView1[5, row.Index].Value.ToString()) == false)
                                 {
-                                    if (Convert.ToInt64(Timeout_Time) - dt > 0)
-                                    {
-                                        dataGridView1[5, row.Index].Value = Convert.ToInt64(Timeout_Time) - dt;
-                                    }
-                                    else
-                                    {
-                                        Datamlpr data = new Datamlpr();
-                                        data.date = dataGridView1.Rows[row.Index].Cells[9].Value.ToString();
-                                        data.client_num = Convert.ToInt32(Client_num);
-                                        sendmb(2, data, null);
-                                        dataGridView1.Rows.RemoveAt(row.Index);
-                                    }
+
                                     if (Convert.ToInt32(dataGridView1[5, row.Index].Value.ToString()) <= Convert.ToInt32(Alert_time))
                                     {
                                         if (!CompareImages((Bitmap)((Image)(dataGridView1.Rows[row.Index].Cells[0].Value)), Properties.Resources.edit))
@@ -2513,6 +2476,23 @@ namespace MLPR
                                         dataGridView1[5, row.Index].Style.SelectionForeColor = Color.Red;
                                         dataGridView1[5, row.Index].Style.ForeColor = Color.Red;
                                     }
+
+                                    if (Convert.ToInt64(Timeout_Time) - dt > 0)
+                                    {
+                                        dataGridView1[5, row.Index].Value = Convert.ToInt64(Timeout_Time) - dt;
+
+                                    }
+                                    else
+                                    {
+                                        Datamlpr data = new Datamlpr();
+                                        data.date = dataGridView1.Rows[row.Index].Cells[9].Value.ToString();
+                                        data.client_num = Convert.ToInt32(Client_num);
+                                        sendmb(2, data, null);
+                                        dataGridView1.Rows.RemoveAt(row.Index);
+
+                                    }
+
+
                                 }
                                 else
                                 {
@@ -2521,6 +2501,7 @@ namespace MLPR
                                     data.client_num = Convert.ToInt32(Client_num);
                                     sendmb(2, data, null);
                                     dataGridView1.Rows.RemoveAt(row.Index);
+
                                 }
 
 
@@ -2533,7 +2514,7 @@ namespace MLPR
             }
             catch (Exception ex)
             {
-                Writeerrorlogfile("[timer1_Tick]" + ex.Message);
+                Writeerrorlogfile("[timer3_Tick]" + ex.Message);
             }
         }
 
@@ -2556,20 +2537,11 @@ namespace MLPR
 
                                 long dt = (long)(DateTime.Now.ToLocalTime() - Convert.ToDateTime(dataGridView1[3, row.Index].Value.ToString() + " " + dataGridView1[4, row.Index].Value.ToString())).TotalSeconds;
 
+
+
                                 if (dataGridView1[5, row.Index].Value.ToString() != "-" && string.IsNullOrEmpty(dataGridView1[5, row.Index].Value.ToString()) == false)
                                 {
-                                    if (Convert.ToInt64(Timeout_Time) - dt > 0)
-                                    {
-                                        dataGridView1[5, row.Index].Value = Convert.ToInt64(Timeout_Time) - dt;
-                                    }
-                                    else
-                                    {
-                                        Datamlpr data = new Datamlpr();
-                                        data.date = dataGridView1.Rows[row.Index].Cells[9].Value.ToString();
-                                        data.client_num = Convert.ToInt32(Client_num);
-                                        sendmb(2, data, null);
-                                        dataGridView1.Rows.RemoveAt(row.Index);
-                                    }
+
                                     if (Convert.ToInt32(dataGridView1[5, row.Index].Value.ToString()) <= Convert.ToInt32(Alert_time))
                                     {
                                         if (!CompareImages((Bitmap)((Image)(dataGridView1.Rows[row.Index].Cells[0].Value)), Properties.Resources.edit))
@@ -2581,6 +2553,23 @@ namespace MLPR
                                         dataGridView1[5, row.Index].Style.SelectionForeColor = Color.Red;
                                         dataGridView1[5, row.Index].Style.ForeColor = Color.Red;
                                     }
+
+                                    if (Convert.ToInt64(Timeout_Time) - dt > 0)
+                                    {
+                                        dataGridView1[5, row.Index].Value = Convert.ToInt64(Timeout_Time) - dt;
+
+                                    }
+                                    else
+                                    {
+                                        Datamlpr data = new Datamlpr();
+                                        data.date = dataGridView1.Rows[row.Index].Cells[9].Value.ToString();
+                                        data.client_num = Convert.ToInt32(Client_num);
+                                        sendmb(2, data, null);
+                                        dataGridView1.Rows.RemoveAt(row.Index);
+
+                                    }
+
+
                                 }
                                 else
                                 {
@@ -2589,6 +2578,7 @@ namespace MLPR
                                     data.client_num = Convert.ToInt32(Client_num);
                                     sendmb(2, data, null);
                                     dataGridView1.Rows.RemoveAt(row.Index);
+
                                 }
 
 
@@ -2601,7 +2591,7 @@ namespace MLPR
             }
             catch (Exception ex)
             {
-                Writeerrorlogfile("[timer1_Tick]" + ex.Message);
+                Writeerrorlogfile("[timer4_Tick]" + ex.Message);
             }
         }
     }
