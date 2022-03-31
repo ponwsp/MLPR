@@ -1,0 +1,7 @@
+{
+"Database_ip":"10.41.12.2",
+"Database_port":"5000",
+"Database_user":"sa",
+"Database_pass":"Admin1234",
+"Database_name":"BPW_DB"
+}

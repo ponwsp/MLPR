@@ -1,0 +1,4 @@
+[2021-08-07 04:25:16]      Load config failed System.FormatException: String was not recognized as a valid DateTime.
+   at System.DateTimeParse.Parse(String s, DateTimeFormatInfo dtfi, DateTimeStyles styles)
+   at System.Convert.ToDateTime(String value, IFormatProvider provider)
+   at MLPR.formvdo.LoadConfigfile(String date, String time) in C:\Users\User-NB\source\repos\MLPR\formvdo.cs:line 791

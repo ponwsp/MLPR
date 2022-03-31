@@ -1,0 +1,11 @@
+{
+"IpMB":"127.0.0.1",
+"PortMB":"10002",
+"Layout_Width":"1920",
+"Layout_Height":"1080",
+"Timeout_Time":"300",
+"Alert_Time":"70",
+"Confident_Detect":"95",
+"Sim_Test":"1",
+"Client_Num":"1"
+}

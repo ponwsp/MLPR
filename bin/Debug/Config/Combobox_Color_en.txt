@@ -1,0 +1,13 @@
+Green
+Gray
+Yellow
+Red
+White
+Pink
+Black
+Blue
+Brown
+Sky
+Violet
+Orange
+Teal

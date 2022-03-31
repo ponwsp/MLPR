@@ -1,0 +1,12 @@
+{
+"IpMB":"127.0.0.1",
+"PortMB":"10002",
+"Ipimage":"10.43.11.17",
+"Ipnvr":"10.43.11.8",
+"Layout_Width":"1920",
+"Layout_Height":"1080",
+"Timeout_Time":"300",
+"Alert_Time":"70",
+"Sim_Test":"1",
+"Client_Num":"1"
+}

@@ -1,0 +1,4 @@
+00:21:22:0611 : logApplicationunhanding: System.Runtime.InteropServices.COMException (0x80040154): Retrieving the COM class factory for component with CLSID {611DE646-1F86-4011-A802-D9414E05141B} failed due to the following error: 80040154 Class not registered (Exception from HRESULT: 0x80040154 (REGDB_E_CLASSNOTREG)).
+   at MLPR.Program.Main() in C:\Users\User-NB\source\repos\MLPRCLIENT_V1.7\MLPRCLIENT_V1.7\MLPR\Program.cs:line 37
+00:22:22:0184 : logApplicationunhanding: System.Runtime.InteropServices.COMException (0x80040154): Retrieving the COM class factory for component with CLSID {611DE646-1F86-4011-A802-D9414E05141B} failed due to the following error: 80040154 Class not registered (Exception from HRESULT: 0x80040154 (REGDB_E_CLASSNOTREG)).
+   at MLPR.Program.Main() in C:\Users\User-NB\source\repos\MLPRCLIENT_V1.7\MLPRCLIENT_V1.7\MLPR\Program.cs:line 37

@@ -1,0 +1,58 @@
+17:03:09:1314 : logApplicationunhanding: System.IO.FileLoadException: Could not load file or assembly 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+File name: 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed'
+   at MLPR.Main.loadconfig()
+   at MLPR.Main.Form1_Load(Object sender, EventArgs e) in C:\Users\User-NB\source\repos\MLPR\Main.cs:line 64
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+=== Pre-bind state information ===
+LOG: DisplayName = Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+ (Fully-specified)
+LOG: Appbase = file:///C:/Users/Jarinee/Documents/My Data/Loxley/Projects/EXAT/62_149ป_งานปรับปรุงบูรพาวิถี/Implement/DetailDesign/MLPR/MLPRCLIENT_V1.6/MLPR/bin/Debug/
+LOG: Initial PrivatePath = NULL
+Calling assembly : MLPR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\Jarinee\Documents\My Data\Loxley\Projects\EXAT\62_149ป_งานปรับปรุงบูรพาวิถี\Implement\DetailDesign\MLPR\MLPRCLIENT_V1.6\MLPR\bin\Debug\MLPR.exe.Config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Post-policy reference: Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+LOG: Attempting download of new URL file:///C:/Users/Jarinee/Documents/My Data/Loxley/Projects/EXAT/62_149ป_งานปรับปรุงบูรพาวิถี/Implement/DetailDesign/MLPR/MLPRCLIENT_V1.6/MLPR/bin/Debug/Newtonsoft.Json.DLL.
+WRN: Comparing the assembly name resulted in the mismatch: Major Version
+ERR: Failed to complete setup of assembly (hr = 0x80131040). Probing terminated.
+
+17:04:26:1776 : logApplicationunhanding: System.IO.FileLoadException: Could not load file or assembly 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed' or one of its dependencies. The located assembly's manifest definition does not match the assembly reference. (Exception from HRESULT: 0x80131040)
+File name: 'Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed'
+   at MLPR.Main.loadconfig()
+   at MLPR.Main.Form1_Load(Object sender, EventArgs e) in C:\Users\User-NB\source\repos\MLPR\Main.cs:line 64
+   at System.Windows.Forms.Form.OnLoad(EventArgs e)
+   at System.Windows.Forms.Form.OnCreateControl()
+   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   at System.Windows.Forms.Control.CreateControl()
+   at System.Windows.Forms.Control.WmShowWindow(Message& m)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.Form.WmShowWindow(Message& m)
+   at System.Windows.Forms.NativeWindow.DebuggableCallback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+=== Pre-bind state information ===
+LOG: DisplayName = Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+ (Fully-specified)
+LOG: Appbase = file:///C:/Users/Jarinee/Documents/My Data/Loxley/Projects/EXAT/62_149ป_งานปรับปรุงบูรพาวิถี/Implement/DetailDesign/MLPR/MLPRCLIENT_V1.6/MLPR/bin/Debug/
+LOG: Initial PrivatePath = NULL
+Calling assembly : MLPR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: C:\Users\Jarinee\Documents\My Data\Loxley\Projects\EXAT\62_149ป_งานปรับปรุงบูรพาวิถี\Implement\DetailDesign\MLPR\MLPRCLIENT_V1.6\MLPR\bin\Debug\MLPR.exe.Config
+LOG: Using host configuration file: 
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Post-policy reference: Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed
+LOG: Attempting download of new URL file:///C:/Users/Jarinee/Documents/My Data/Loxley/Projects/EXAT/62_149ป_งานปรับปรุงบูรพาวิถี/Implement/DetailDesign/MLPR/MLPRCLIENT_V1.6/MLPR/bin/Debug/Newtonsoft.Json.DLL.
+WRN: Comparing the assembly name resulted in the mismatch: Major Version
+ERR: Failed to complete setup of assembly (hr = 0x80131040). Probing terminated.
+
