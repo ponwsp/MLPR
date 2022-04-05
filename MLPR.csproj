@@ -115,7 +115,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MLPR_SEREVER\bin\Release\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\repos\Convertkanchana\Convertkanchana\bin\Debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sybase.AdoNet45.AseClient">
       <HintPath>..\..\..\Downloads\SAP ASE DOT NET DATA PROVIDER\SAP ASE DOT NET DATA PROVIDER\dll\Sybase.AdoNet45.AseClient.dll</HintPath>

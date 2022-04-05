@@ -30,11 +30,10 @@ namespace MLPR
         private static string Ipimage;
 
         private static string Ipnvr;
-        private static string Cam_T_name;
-        private static string Cam_S_name;
-
+     
 
         private static string plaza_name;
+        private static string plaza_id;
         private static string Layout_Width;
 
         private static string Layout_Height;
@@ -97,6 +96,8 @@ namespace MLPR
             sc.Cbbrand = this.txtbrand;
             sc.Cbcolor = this.txtcolor;
             sc.Cbprovince = this.txtprovince;
+
+            sc.Plaza_id = plaza_id;
 
             datacoloren = sc.listcoloren;
 
@@ -215,6 +216,7 @@ namespace MLPR
 
                 plaza_name = cf.plazaname;
 
+                plaza_id = cf.plaza_id;
 
                 //lbclient.Text = Client_num;
 
@@ -1310,7 +1312,7 @@ namespace MLPR
                 lbcolor.Text = "-";
                 lbbrand.Text = "-";
                 lbacc.Text = "";
-                txtlane_direction.Text = "-";
+                //txtlane_direction.Text = "-";
             }
             catch { }
         }
@@ -1322,83 +1324,90 @@ namespace MLPR
                 {
                     if (dataGridView1.Rows[0].Cells[1].Value != null)
                     {
+
+
                         int row = dataGridView1.CurrentRow.Index;
 
-                        txtlane_direction.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
-                        lbdateselect.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
-                        lbtimeselect.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
 
-                        if (dataGridView1.Rows[row].Cells[10].Value != null)
+                        if (row != -1)
                         {
-                            trxadjust.Root data = new trxadjust.Root();
 
-                            data = JsonConvert.DeserializeObject<trxadjust.Root>(dataGridView1.Rows[row].Cells[10].Value.ToString());
+                            txtlane_direction.Text = dataGridView1.Rows[row].Cells[1].Value.ToString();
+                            lbdateselect.Text = dataGridView1.Rows[row].Cells[3].Value.ToString();
+                            lbtimeselect.Text = dataGridView1.Rows[row].Cells[4].Value.ToString();
 
-
-                            txt3digit.Text = "";
-                            txt4digit.Text = "";
-                            txtprovince.Text = "Unknown";
-                            txtcolor.Text = "Unknown";
-                            txtbrand.Text = "UNKNOWN";
-
-
-                            if (data.lpr[0].no != null && data.lpr[0].nochar != null)
+                            if (dataGridView1.Rows[row].Cells[10].Value != null)
                             {
+                                trxadjust.Root data = new trxadjust.Root();
 
-                                lblicense.Text = data.lpr[0].nochar.ToString() + "-" + checkstringlicense(data.lpr[0].no.ToString());
-                                txt3digit.Text = data.lpr[0].nochar.ToString();
-                                txt4digit.Text = checkstringlicense(data.lpr[0].no.ToString());
+                                data = JsonConvert.DeserializeObject<trxadjust.Root>(dataGridView1.Rows[row].Cells[10].Value.ToString());
+
+
+                                txt3digit.Text = "";
+                                txt4digit.Text = "";
+                                txtprovince.Text = "Unknown";
+                                txtcolor.Text = "Unknown";
+                                txtbrand.Text = "UNKNOWN";
+
+
+                                if (data.lpr[0].no != null && data.lpr[0].nochar != null)
+                                {
+
+                                    lblicense.Text = data.lpr[0].nochar.ToString() + "-" + checkstringlicense(data.lpr[0].no.ToString());
+                                    txt3digit.Text = data.lpr[0].nochar.ToString();
+                                    txt4digit.Text = checkstringlicense(data.lpr[0].no.ToString());
+                                }
+                                if (data.lpr[0].province != null)
+                                {
+                                    lbprovince.Text = convertprovinceentoth(data.lpr[0].province.ToString());
+                                    txtprovince.Text = convertprovinceentoth(data.lpr[0].province.ToString());
+                                }
+                                if (data.lpr[0].color != null)
+                                {
+                                    lbcolor.Text = convertcolorentoth(data.lpr[0].color.ToString());
+                                    txtcolor.Text = convertcolorentoth(data.lpr[0].color.ToString());
+                                }
+                                if (data.lpr[0].brand != null)
+                                {
+                                    lbbrand.Text = data.lpr[0].brand.ToString();
+                                    txtbrand.Text = data.lpr[0].brand.ToString();
+                                }
+
+                                lbacc.Text = "";
+
+                                if (data.lpr[0].conf <= 1 && data.lpr[0].conf != 0)
+                                {
+                                    lbacc.Text = (data.lpr[0].conf * 100).ToString("f2") + "  %";
+                                }
+                                else if (data.lpr[0].conf > 1 && data.lpr[0].conf != 0)
+                                {
+                                    lbacc.Text = data.lpr[0].conf.ToString("f2") + "  %";
+                                }
+
+                                numpicall.Text = data.lpr.Count.ToString();
+
+                                btnimage_Click(sender, null);
+
+                                //downloadpic(data.lpr[0].image.ToString(),data.lpr[0].imagelp.ToString());
+
                             }
-                            if (data.lpr[0].province != null)
+
+
+                            if (dataGridView1.Rows[row].Cells[11].Value == "1")
                             {
-                                lbprovince.Text =  convertprovinceentoth(data.lpr[0].province.ToString());
-                                txtprovince.Text = convertprovinceentoth(data.lpr[0].province.ToString());
+                                paneleditlicense.Visible = false;
+                                return;
                             }
-                            if (data.lpr[0].color != null)
+                            //  lbacc.Text = dataGridView1.Rows[row].Cells[6].Value.ToString();
+
+                            if (CompareImages((Bitmap)((Image)(dataGridView1.Rows[row].Cells[0].Value)), Properties.Resources.edit))
                             {
-                                lbcolor.Text = convertcolorentoth(data.lpr[0].color.ToString());
-                                txtcolor.Text = convertcolorentoth(data.lpr[0].color.ToString());
+                                paneleditlicense.Visible = true;
                             }
-                            if (data.lpr[0].brand != null)
+                            else
                             {
-                                lbbrand.Text = data.lpr[0].brand.ToString();
-                                txtbrand.Text = data.lpr[0].brand.ToString();
+                                paneleditlicense.Visible = false;
                             }
-
-                            lbacc.Text = "";
-
-                            if(data.lpr[0].conf <= 1 && data.lpr[0].conf != 0)
-                            {
-                                lbacc.Text = (data.lpr[0].conf*100).ToString("f2") + "  %";
-                            }
-                            else if(data.lpr[0].conf > 1 && data.lpr[0].conf != 0)
-                            {
-                                lbacc.Text = data.lpr[0].conf.ToString("f2") + "  %";
-                            }
-                            
-                            numpicall.Text = data.lpr.Count.ToString();
-                           
-                            btnimage_Click(sender, null);
-
-                            //downloadpic(data.lpr[0].image.ToString(),data.lpr[0].imagelp.ToString());
-
-                        }
-
-
-                        if(dataGridView1.Rows[row].Cells[11].Value == "1")
-                        {
-                            paneleditlicense.Visible = false;
-                            return;
-                        }
-                      //  lbacc.Text = dataGridView1.Rows[row].Cells[6].Value.ToString();
-
-                        if (CompareImages((Bitmap)((Image)(dataGridView1.Rows[row].Cells[0].Value)), Properties.Resources.edit))
-                        {
-                            paneleditlicense.Visible = true;
-                        }
-                        else
-                        {
-                            paneleditlicense.Visible = false;
                         }
                     }
                 }
@@ -1596,7 +1605,7 @@ namespace MLPR
                 {
                     long dt = (long)(DateTime.Now.ToLocalTime() - Convert.ToDateTime(timeserversync)).TotalSeconds;
 
-                    if (dt > 10)
+                    if (dt > 15)
                     {
                         if (Simulate != "1")
                         {
@@ -2593,6 +2602,36 @@ namespace MLPR
             {
                 Writeerrorlogfile("[timer4_Tick]" + ex.Message);
             }
+        }
+
+        private void txtprovince_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                SortedDictionary<int, string> dict = new SortedDictionary<int, string>();
+
+                int found = -1;
+                int current = txtprovince.SelectedIndex;
+
+                // collect all items that match:
+                for (int i = 0; i < txtprovince.Items.Count; i++)
+                    if (txtprovince.Items[i].ToString().IndexOf(e.KeyChar.ToString().ToLower()) >= 0)
+                        // case sensitive version:
+                        // if (((ListInfo)comboBox1.Items[i]).Name.IndexOf(e.KeyChar.ToString()) >= 0)
+                        dict.Add(i,txtprovince.Items[i].ToString());
+
+                // find the one after the current position:
+                foreach (KeyValuePair<int,string > kv in dict)
+                    if (kv.Key > current) { found = kv.Key; break; }
+
+                // or take the first one:
+                if (dict.Keys.Count > 0 && found < 0) found = dict.Keys.First();
+
+                if (found >= 0) txtprovince.SelectedIndex = found;
+
+                e.Handled = true;
+            }
+            catch { }
         }
     }
 }

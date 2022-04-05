@@ -53,6 +53,9 @@
             this.btnclear = new System.Windows.Forms.Button();
             this.btnsearch = new System.Windows.Forms.Button();
             this.panelvehicle = new System.Windows.Forms.Panel();
+            this.cbprovince = new MLPR.CheckedComboBox();
+            this.cbbrand = new MLPR.CheckedComboBox();
+            this.cbcolor = new MLPR.CheckedComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -69,16 +72,24 @@
             this.direction = new System.Windows.Forms.ComboBox();
             this.startdate = new System.Windows.Forms.DateTimePicker();
             this.starttime = new System.Windows.Forms.ComboBox();
-            this.endtime = new System.Windows.Forms.ComboBox();
             this.cmdExit = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lbstatesearch = new System.Windows.Forms.Label();
             this.lbnum = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.cbprovince = new MLPR.CheckedComboBox();
-            this.cbbrand = new MLPR.CheckedComboBox();
-            this.cbcolor = new MLPR.CheckedComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.accmin = new System.Windows.Forms.ComboBox();
+            this.lbtime = new System.Windows.Forms.Label();
+            this.starttime1 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.endtime1 = new System.Windows.Forms.ComboBox();
+            this.endtime = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.starttime2 = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.endtime2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelvehicle.SuspendLayout();
             this.SuspendLayout();
@@ -304,6 +315,60 @@
             this.panelvehicle.Size = new System.Drawing.Size(608, 95);
             this.panelvehicle.TabIndex = 27;
             // 
+            // cbprovince
+            // 
+            this.cbprovince.CheckOnClick = true;
+            this.cbprovince.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbprovince.DropDownHeight = 1;
+            this.cbprovince.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbprovince.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cbprovince.FormattingEnabled = true;
+            this.cbprovince.IntegralHeight = false;
+            this.cbprovince.Location = new System.Drawing.Point(371, 18);
+            this.cbprovince.Name = "cbprovince";
+            this.cbprovince.Size = new System.Drawing.Size(225, 24);
+            this.cbprovince.TabIndex = 317;
+            this.cbprovince.Text = "เลือกทั้งหมด";
+            this.cbprovince.ValueSeparator = ", ";
+            this.cbprovince.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbprovince_ItemCheck);
+            this.cbprovince.Click += new System.EventHandler(this.cbprovince_Click);
+            // 
+            // cbbrand
+            // 
+            this.cbbrand.CheckOnClick = true;
+            this.cbbrand.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbrand.DropDownHeight = 1;
+            this.cbbrand.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbbrand.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cbbrand.FormattingEnabled = true;
+            this.cbbrand.IntegralHeight = false;
+            this.cbbrand.Location = new System.Drawing.Point(371, 62);
+            this.cbbrand.Name = "cbbrand";
+            this.cbbrand.Size = new System.Drawing.Size(225, 24);
+            this.cbbrand.TabIndex = 316;
+            this.cbbrand.Text = "เลือกทั้งหมด";
+            this.cbbrand.ValueSeparator = ", ";
+            this.cbbrand.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbbrand_ItemCheck);
+            this.cbbrand.Click += new System.EventHandler(this.cbbrand_Click);
+            // 
+            // cbcolor
+            // 
+            this.cbcolor.CheckOnClick = true;
+            this.cbcolor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbcolor.DropDownHeight = 1;
+            this.cbcolor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cbcolor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.cbcolor.FormattingEnabled = true;
+            this.cbcolor.IntegralHeight = false;
+            this.cbcolor.Location = new System.Drawing.Point(70, 62);
+            this.cbcolor.Name = "cbcolor";
+            this.cbcolor.Size = new System.Drawing.Size(204, 24);
+            this.cbcolor.TabIndex = 314;
+            this.cbcolor.Text = "เลือกทั้งหมด";
+            this.cbcolor.ValueSeparator = ", ";
+            this.cbcolor.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbcolor_ItemCheck);
+            this.cbcolor.Click += new System.EventHandler(this.cbcolor_Click);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -412,34 +477,38 @@
             // acc
             // 
             this.acc.DropDownHeight = 80;
-            this.acc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.acc.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.acc.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.acc.FormattingEnabled = true;
             this.acc.IntegralHeight = false;
             this.acc.Items.AddRange(new object[] {
-            "100-90",
-            "90-80",
-            "80-70",
-            "70-60",
-            "60-50",
-            "50-40",
-            "40-30",
-            "30-20",
-            "20-10",
-            "10-0"});
-            this.acc.Location = new System.Drawing.Point(438, 56);
+            "100",
+            "95",
+            "90",
+            "85",
+            "80",
+            "75",
+            "70",
+            "65",
+            "60",
+            "50",
+            "40",
+            "30",
+            "20",
+            "10"});
+            this.acc.Location = new System.Drawing.Point(426, 56);
             this.acc.Name = "acc";
             this.acc.Size = new System.Drawing.Size(101, 24);
             this.acc.TabIndex = 21;
+            this.acc.Text = "100";
             // 
             // enddate
             // 
             this.enddate.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.enddate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.enddate.Location = new System.Drawing.Point(350, 16);
+            this.enddate.Location = new System.Drawing.Point(444, 16);
             this.enddate.Name = "enddate";
-            this.enddate.Size = new System.Drawing.Size(137, 23);
+            this.enddate.Size = new System.Drawing.Size(178, 23);
             this.enddate.TabIndex = 19;
             // 
             // label1
@@ -477,73 +546,38 @@
             // 
             // starttime
             // 
+            this.starttime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.starttime.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.starttime.FormattingEnabled = true;
             this.starttime.Items.AddRange(new object[] {
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00"});
-            this.starttime.Location = new System.Drawing.Point(227, 16);
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"});
+            this.starttime.Location = new System.Drawing.Point(227, 17);
             this.starttime.Name = "starttime";
-            this.starttime.Size = new System.Drawing.Size(65, 24);
+            this.starttime.Size = new System.Drawing.Size(42, 24);
             this.starttime.TabIndex = 33;
-            this.starttime.Text = "00:00";
-            // 
-            // endtime
-            // 
-            this.endtime.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.endtime.FormattingEnabled = true;
-            this.endtime.Items.AddRange(new object[] {
-            "00:00",
-            "01:00",
-            "02:00",
-            "03:00",
-            "04:00",
-            "05:00",
-            "06:00",
-            "07:00",
-            "08:00",
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-            "18:00",
-            "19:00",
-            "20:00",
-            "21:00",
-            "22:00",
-            "23:00"});
-            this.endtime.Location = new System.Drawing.Point(493, 15);
-            this.endtime.Name = "endtime";
-            this.endtime.Size = new System.Drawing.Size(61, 24);
-            this.endtime.TabIndex = 34;
-            this.endtime.Text = "23:59";
             // 
             // cmdExit
             // 
@@ -567,7 +601,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.label10.Location = new System.Drawing.Point(308, 22);
+            this.label10.Location = new System.Drawing.Point(413, 23);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(14, 16);
             this.label10.TabIndex = 313;
@@ -586,7 +620,7 @@
             // 
             this.lbstatesearch.AutoSize = true;
             this.lbstatesearch.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.lbstatesearch.Location = new System.Drawing.Point(1076, 178);
+            this.lbstatesearch.Location = new System.Drawing.Point(1032, 103);
             this.lbstatesearch.Name = "lbstatesearch";
             this.lbstatesearch.Size = new System.Drawing.Size(73, 17);
             this.lbstatesearch.TabIndex = 315;
@@ -612,59 +646,169 @@
             this.label11.TabIndex = 317;
             this.label11.Text = "รายการ";
             // 
-            // cbprovince
+            // label2
             // 
-            this.cbprovince.CheckOnClick = true;
-            this.cbprovince.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbprovince.DropDownHeight = 1;
-            this.cbprovince.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbprovince.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cbprovince.FormattingEnabled = true;
-            this.cbprovince.IntegralHeight = false;
-            this.cbprovince.Location = new System.Drawing.Point(371, 18);
-            this.cbprovince.Name = "cbprovince";
-            this.cbprovince.Size = new System.Drawing.Size(225, 24);
-            this.cbprovince.TabIndex = 317;
-            this.cbprovince.Text = "เลือกทั้งหมด";
-            this.cbprovince.ValueSeparator = ", ";
-            this.cbprovince.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbprovince_ItemCheck);
-            this.cbprovince.Click += new System.EventHandler(this.cbprovince_Click);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label2.Location = new System.Drawing.Point(533, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 17);
+            this.label2.TabIndex = 319;
+            this.label2.Text = "-";
             // 
-            // cbbrand
+            // accmin
             // 
-            this.cbbrand.CheckOnClick = true;
-            this.cbbrand.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbbrand.DropDownHeight = 1;
-            this.cbbrand.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbbrand.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cbbrand.FormattingEnabled = true;
-            this.cbbrand.IntegralHeight = false;
-            this.cbbrand.Location = new System.Drawing.Point(371, 62);
-            this.cbbrand.Name = "cbbrand";
-            this.cbbrand.Size = new System.Drawing.Size(225, 24);
-            this.cbbrand.TabIndex = 316;
-            this.cbbrand.Text = "เลือกทั้งหมด";
-            this.cbbrand.ValueSeparator = ", ";
-            this.cbbrand.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbbrand_ItemCheck);
-            this.cbbrand.Click += new System.EventHandler(this.cbbrand_Click);
+            this.accmin.DropDownHeight = 80;
+            this.accmin.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.accmin.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.accmin.FormattingEnabled = true;
+            this.accmin.IntegralHeight = false;
+            this.accmin.Items.AddRange(new object[] {
+            "100",
+            "95",
+            "90",
+            "85",
+            "80",
+            "75",
+            "70",
+            "65",
+            "60",
+            "50",
+            "40",
+            "30",
+            "20",
+            "10"});
+            this.accmin.Location = new System.Drawing.Point(553, 57);
+            this.accmin.Name = "accmin";
+            this.accmin.Size = new System.Drawing.Size(101, 24);
+            this.accmin.TabIndex = 320;
+            this.accmin.Text = "70";
             // 
-            // cbcolor
+            // lbtime
             // 
-            this.cbcolor.CheckOnClick = true;
-            this.cbcolor.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbcolor.DropDownHeight = 1;
-            this.cbcolor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cbcolor.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
-            this.cbcolor.FormattingEnabled = true;
-            this.cbcolor.IntegralHeight = false;
-            this.cbcolor.Location = new System.Drawing.Point(70, 62);
-            this.cbcolor.Name = "cbcolor";
-            this.cbcolor.Size = new System.Drawing.Size(204, 24);
-            this.cbcolor.TabIndex = 314;
-            this.cbcolor.Text = "เลือกทั้งหมด";
-            this.cbcolor.ValueSeparator = ", ";
-            this.cbcolor.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.cbcolor_ItemCheck);
-            this.cbcolor.Click += new System.EventHandler(this.cbcolor_Click);
+            this.lbtime.AutoSize = true;
+            this.lbtime.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lbtime.Location = new System.Drawing.Point(1120, 178);
+            this.lbtime.Name = "lbtime";
+            this.lbtime.Size = new System.Drawing.Size(35, 17);
+            this.lbtime.TabIndex = 321;
+            this.lbtime.Text = "120";
+            this.lbtime.Visible = false;
+            // 
+            // starttime1
+            // 
+            this.starttime1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.starttime1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.starttime1.FormattingEnabled = true;
+            this.starttime1.Location = new System.Drawing.Point(288, 17);
+            this.starttime1.Name = "starttime1";
+            this.starttime1.Size = new System.Drawing.Size(42, 24);
+            this.starttime1.TabIndex = 322;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label12.Location = new System.Drawing.Point(273, 20);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(13, 16);
+            this.label12.TabIndex = 323;
+            this.label12.Text = ":";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label14.Location = new System.Drawing.Point(678, 19);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(13, 16);
+            this.label14.TabIndex = 327;
+            this.label14.Text = ":";
+            // 
+            // endtime1
+            // 
+            this.endtime1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.endtime1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.endtime1.FormattingEnabled = true;
+            this.endtime1.Location = new System.Drawing.Point(695, 16);
+            this.endtime1.Name = "endtime1";
+            this.endtime1.Size = new System.Drawing.Size(42, 24);
+            this.endtime1.TabIndex = 326;
+            // 
+            // endtime
+            // 
+            this.endtime.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.endtime.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.endtime.FormattingEnabled = true;
+            this.endtime.Items.AddRange(new object[] {
+            "00",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23"});
+            this.endtime.Location = new System.Drawing.Point(630, 16);
+            this.endtime.Name = "endtime";
+            this.endtime.Size = new System.Drawing.Size(42, 24);
+            this.endtime.TabIndex = 325;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label13.Location = new System.Drawing.Point(337, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(13, 16);
+            this.label13.TabIndex = 329;
+            this.label13.Text = ":";
+            // 
+            // starttime2
+            // 
+            this.starttime2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.starttime2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.starttime2.FormattingEnabled = true;
+            this.starttime2.Location = new System.Drawing.Point(355, 18);
+            this.starttime2.Name = "starttime2";
+            this.starttime2.Size = new System.Drawing.Size(42, 24);
+            this.starttime2.TabIndex = 328;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label15.Location = new System.Drawing.Point(746, 19);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(13, 16);
+            this.label15.TabIndex = 331;
+            this.label15.Text = ":";
+            // 
+            // endtime2
+            // 
+            this.endtime2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.endtime2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.endtime2.FormattingEnabled = true;
+            this.endtime2.Location = new System.Drawing.Point(763, 16);
+            this.endtime2.Name = "endtime2";
+            this.endtime2.Size = new System.Drawing.Size(42, 24);
+            this.endtime2.TabIndex = 330;
             // 
             // searchlicense
             // 
@@ -672,13 +816,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1407, 699);
             this.ControlBox = false;
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.endtime2);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.starttime2);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.endtime1);
+            this.Controls.Add(this.endtime);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.starttime1);
+            this.Controls.Add(this.lbtime);
+            this.Controls.Add(this.accmin);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lbnum);
             this.Controls.Add(this.lbstatesearch);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cmdExit);
-            this.Controls.Add(this.endtime);
             this.Controls.Add(this.starttime);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnclear);
@@ -735,7 +890,6 @@
         private System.Windows.Forms.ComboBox direction;
         private System.Windows.Forms.DateTimePicker startdate;
         private System.Windows.Forms.ComboBox starttime;
-        private System.Windows.Forms.ComboBox endtime;
         private System.Windows.Forms.Button cmdExit;
         private System.Windows.Forms.Label label10;
         private CheckedComboBox cbbrand;
@@ -762,5 +916,17 @@
         private System.Windows.Forms.Label lbstatesearch;
         private System.Windows.Forms.Label lbnum;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox accmin;
+        private System.Windows.Forms.Label lbtime;
+        private System.Windows.Forms.ComboBox starttime1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox endtime1;
+        private System.Windows.Forms.ComboBox endtime;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox starttime2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox endtime2;
     }
 }

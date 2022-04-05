@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PresentationControls;
 using System.Threading;
+using System.Data.SqlClient;
 
 namespace MLPR
 {
@@ -24,6 +25,8 @@ namespace MLPR
         private static AseConnection conn = new AseConnection();
         private static AseCommand cmd;
         private static AseDataReader reader;
+
+        private static string plaza_id;
 
         private static string ipdb;
         private static string portdb;
@@ -48,6 +51,8 @@ namespace MLPR
         private ComboBox _cbcolor;
         private ComboBox _cbbrand;
 
+        
+
         public searchlicense()
         {
             InitializeComponent();
@@ -64,9 +69,46 @@ namespace MLPR
             externalDisplay();
             //loaddata();
             btnclear_Click(null,null);
-            acc.Text = "100-90";
-        }
 
+
+
+            loadtimestart();
+
+
+
+          
+        }
+        private void loadtimestart()
+        {
+            try
+            {
+                for(int i = 0; i <= 60; i ++)
+                {
+                    starttime1.Items.Add(i.ToString("d2"));
+                    endtime1.Items.Add(i.ToString("d2"));
+                    starttime2.Items.Add(i.ToString("d2"));
+                    endtime2.Items.Add(i.ToString("d2"));
+                }
+
+
+
+
+
+                starttime.Text = "00";
+                starttime1.Text = "00";
+                starttime2.Text = "00";
+
+                endtime.Text = "23";
+                endtime1.Text = "59";
+                endtime2.Text = "00";
+            }
+            catch
+            {
+
+
+            }
+                
+        }
         private void loadconfig()
         {
            try
@@ -308,20 +350,38 @@ namespace MLPR
             {
                 lock (this)
                 {
-                    ManualResetEvent mre = new ManualResetEvent(false);
-                    mre.Set();
+                
 
                     if (Connectdb())
                     {
 
-                        command(startdate.Value.Date.ToString("yyyy-MM-dd"), starttime.Text.Trim(), enddate.Value.Date.ToString("yyyy-MM-dd"), endtime.Text.Trim(), direction.Text.Trim(), acc.Text.Trim(), adjust.Text.Trim());
+                        command(startdate.Value.Date.ToString("yyyy-MM-dd"), starttime.Text.Trim() + ":" + starttime1.Text.Trim() + ":" + starttime2.Text.Trim(), enddate.Value.Date.ToString("yyyy-MM-dd"), endtime.Text.Trim() + ":" + endtime1.Text.Trim() + ":" + endtime2.Text.Trim(), direction.Text.Trim(), acc.Text.Trim(), adjust.Text.Trim());
                         commandaddvehicle(license.Text.Trim(), cbprovince.Text.Trim(), cbcolor.Text.Trim(), cbbrand.Text.Trim());
-                        //Writestatelogfile(commanddb);
+                        Writestatelogfile(commanddb);
                         dataGridView1.Rows.Clear();
-
+                       
                         cmd = new AseCommand(commanddb, conn);
-                        reader = cmd.ExecuteReader();
 
+                        cmd.CommandTimeout = 0;
+                        try
+                        {
+                           
+                            reader = cmd.ExecuteReader();
+
+
+                        }
+                        catch (SqlException e)
+                        {
+                            Console.WriteLine("Got expected SqlException due to command timeout ");
+                            Console.WriteLine(e);
+                        }
+
+                     
+                      
+
+                        //timer1.Stop();
+
+             
                         //mre.WaitOne(,);
 
                         lbstatesearch.Text = "...ค้นหาข้อมูลสำเร็จ...";
@@ -354,7 +414,7 @@ namespace MLPR
                             fc.@class = Convert.ToInt16(reader[7]);
                             fc.avc = reader[8].ToString();
 
-                            fc.color =   convertdata.convertcolorid(reader[9].ToString(),datacolorid,datacolorth);
+                            fc.color =  convertdata.convertcolorid(reader[9].ToString(),datacolorid,datacolorth);
                             fc.brand =  convertdata.convertbrandid(reader[10].ToString(),databrandid,databranden);
                             fc.license = reader[11].ToString();
 
@@ -364,15 +424,15 @@ namespace MLPR
 
 
 
-                            fc.acc = ((Convert.ToDouble(reader[14].ToString()) + Convert.ToDouble(reader[15].ToString()) + Convert.ToDouble(reader[16].ToString())) / 3).ToString(("F2"));
+                            fc.acc = ((Convert.ToDouble(reader[14].ToString()) + Convert.ToDouble(reader[15].ToString()) + Convert.ToDouble(reader[16].ToString())) / 3).ToString(("d2"));
 
                             // String.Format("{0:0.##}", fc.acc);
 
                             double db1 = Convert.ToDouble(fc.acc.ToString().Trim());
 
-                            double max = Convert.ToDouble(acc.Text.Trim().Split('-')[0].ToString());
+                            double max = Convert.ToDouble(acc.Text.Trim().ToString());
 
-                            double min = Convert.ToDouble(acc.Text.Trim().Split('-')[1].ToString());
+                            double min = Convert.ToDouble(accmin.Text.ToString());
 
 
                             if (db1 > min && db1 <= max)
@@ -422,14 +482,47 @@ namespace MLPR
             }
             catch (Exception ex)
             {
-                lbstatesearch.Text = "ข้อมูลมีจำนวนมากเกินไป กรุณาระบุเงื่อนไขใหม่"; 
+
+              
+
+                lbstatesearch.Text = "ข้อมูลมีจำนวนมากเกินไป กรุณาระบุเงื่อนไขใหม่" ; 
+
+                
                 //MessageBox.Show("search" + ex.Message);
             }
             GC.Collect();
         }
 
-       
 
+        private void Writestatelogfile(string message)
+        {
+
+            lock (this)
+            {
+                try
+                {
+                    //find log is exist or not
+                    string curfile = Application.StartupPath + @"\LOG\STATEsql\" + DateTime.Now.ToString("dd_MM_yyyy") + ".txt";
+                    if (!File.Exists(curfile))
+                    {
+                        using (TextWriter tw = new StreamWriter(curfile))
+                        {
+
+                            tw.WriteLine(DateTime.Now.ToString("HH:mm:ss:ffff") + " : " + message);
+                        };
+                    }
+                    else
+                    {
+                        using (StreamWriter sw = File.AppendText(curfile))
+                        {
+                            sw.WriteLine(DateTime.Now.ToString("HH:mm:ss:ffff") + " : " + message);
+                        }
+                    }
+                }
+                catch { }
+                GC.Collect();
+            }
+        }
         private void btnclear_Click(object sender, EventArgs e)
         {
             lbstatesearch.Text = "";
@@ -526,14 +619,14 @@ namespace MLPR
 
             commanddb += " tlp.license_province_conf AS accprovince";
 
-                        if (direction == "Entry")
-                        {
-                            commanddb += " FROM BPW_DB.dbo.tbl_entry_transaction ext ";
-                        }   
-                        else if(direction == "Exit")
-                        {
-                            commanddb += " FROM BPW_DB.dbo.tbl_exit_transaction ext ";
-                        }
+            if (direction == "Entry")
+            {
+                commanddb += " FROM BPW_DB.dbo.tbl_entry_transaction ext ";
+            }
+            else if (direction == "Exit")
+            {
+                commanddb += " FROM BPW_DB.dbo.tbl_exit_transaction ext ";
+            }
 
 
 
@@ -542,19 +635,19 @@ namespace MLPR
                   " ON ext.job_id = tj2.job_id" +
                   " RIGHT JOIN BPW_DB.dbo.tbl_license_plate tlp" +
                   " ON ext.trx_id = tlp.ref_trx_id" +
-                 // " LEFt JOIN BPW_DB.dbo.mas_vehicle_color mvc2" +
-                 // " ON mvc2.vehicle_color_id = tlp.vehicle_color_id " +
-                 // " LEFt JOIN BPW_DB.dbo.mas_vehicle_brand mvb2" +
-                 // " ON mvb2.vehicle_brand_id = tlp.vehicle_brand_id" +
-                 // " LEFT JOIN BPW_DB.dbo.mas_vehicle_province mvp" +
-                 // " ON mvp.vehicle_province_id  = tlp.license_province_id" +
+                  // " LEFt JOIN BPW_DB.dbo.mas_vehicle_color mvc2" +
+                  // " ON mvc2.vehicle_color_id = tlp.vehicle_color_id " +
+                  // " LEFt JOIN BPW_DB.dbo.mas_vehicle_brand mvb2" +
+                  // " ON mvb2.vehicle_brand_id = tlp.vehicle_brand_id" +
+                  // " LEFT JOIN BPW_DB.dbo.mas_vehicle_province mvp" +
+                  // " ON mvp.vehicle_province_id  = tlp.license_province_id" +
 
 
 
 
                   " WHERE trx_datetime BETWEEN '" + stdate + " " + sttime + "' AND '" + enddate + " " + endtime + "' " + 
 
-                  " AND ext.plaza_id = 104001001 ";
+                  " AND ext.plaza_id = " + Plaza_id;
                          
                         //" AND tlp.license_chr_conf " + acc.ToString();
 
@@ -976,6 +1069,35 @@ namespace MLPR
                 return datacoloren;
             }
 
+        }
+
+        public string Plaza_id
+        {
+            get
+            {
+                return plaza_id;
+            }
+            set
+            {
+                plaza_id = value;
+            }
+
+
+                
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (lbtime.Text != "0" && lbtime.Text.Contains('-') == false && string.IsNullOrEmpty(lbtime.Text) == false)
+                {
+                    lbtime.Text = (Convert.ToInt32(lbtime.Text) - 1).ToString();
+                }
+            }
+            catch { }
+                
         }
     }
 }

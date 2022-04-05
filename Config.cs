@@ -16,6 +16,8 @@ namespace MLPR
 
         public string plazaname { get; set; }
 
+        public string plaza_id { get; set; }
+
         public string Layout_Width { get; set; }
 
         public string Layout_Height { get; set; }

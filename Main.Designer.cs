@@ -461,7 +461,6 @@
             // txtbrand
             // 
             this.txtbrand.DropDownHeight = 120;
-            this.txtbrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtbrand.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtbrand.ForeColor = System.Drawing.Color.DarkBlue;
             this.txtbrand.FormattingEnabled = true;
@@ -476,7 +475,6 @@
             // txtcolor
             // 
             this.txtcolor.DropDownHeight = 120;
-            this.txtcolor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtcolor.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtcolor.ForeColor = System.Drawing.Color.DarkBlue;
             this.txtcolor.FormattingEnabled = true;
@@ -491,7 +489,6 @@
             // txtprovince
             // 
             this.txtprovince.DropDownHeight = 120;
-            this.txtprovince.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtprovince.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.txtprovince.ForeColor = System.Drawing.Color.DarkBlue;
             this.txtprovince.FormattingEnabled = true;
@@ -502,6 +499,7 @@
             this.txtprovince.Name = "txtprovince";
             this.txtprovince.Size = new System.Drawing.Size(200, 27);
             this.txtprovince.TabIndex = 11;
+            this.txtprovince.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtprovince_KeyPress);
             // 
             // txt4digit
             // 
